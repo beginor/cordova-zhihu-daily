@@ -1,0 +1,22 @@
+<div class="card">
+  <img class="card-img-top img-fluid" [src]="themeStory.image" [alt]="themeStory.name">
+  <div class="card-block">
+    <h4 class="card-title">{{themeStory.name}}</h4>
+    <p class="card-text">{{themeStory.description}}</p>
+  </div>
+</div>
+
+<div class="list-group">
+    <a class="list-group-item" *ngFor="#story of themeStory.stories" [routerLink]="['StoryDetail', { id: story.id }]">
+        <table>
+            <tr>
+                <td *ngIf="story.images">
+                    <img [src]="story.images[0]" style="width: 48px; height: 48px; margin-right: 8px;" [alt]="story.title" />
+                </td>
+                <td>
+                    <p class="list-group-item-text">{{story.title}}</p>
+                </td>
+            </tr>
+        </table>
+    </a>
+</div>

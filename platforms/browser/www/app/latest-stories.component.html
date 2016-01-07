@@ -1,0 +1,34 @@
+<div class="list-group">
+    <a class="list-group-item disabled">
+        <h4 class="list-group-item-heading">头条新闻</h4>
+    </a>
+    <a class="list-group-item" *ngFor="#story of latestStory.top_stories" [routerLink]="['StoryDetail', { id: story.id }]">
+        <table>
+            <tr>
+                <td>
+                    <img [src]="story.image" style="width: 48px; height: 48px; margin-right: 8px;" [alt]="story.title" />
+                </td>
+                <td>
+                    <p class="list-group-item-text">{{story.title}}</p>
+                </td>
+            </tr>
+        </table>
+    </a>
+    <a class="list-group-item disabled">
+        <h4 class="list-group-item-heading">最近更新</h4>
+    </a>
+    <a class="list-group-item" *ngFor="#story of latestStory.stories" [routerLink]="['StoryDetail', { id: story.id }]">
+        <table>
+            <tr>
+                <td>
+                    <img [src]="story.images[0]" style="width: 48px; height: 48px; margin-right: 8px;" [alt]="story.title" />
+                </td>
+                <td>
+                    <p class="list-group-item-text">{{story.title}}</p>
+                </td>
+            </tr>
+        </table>
+    </a>
+</div>
+
+

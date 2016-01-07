@@ -1,0 +1,32 @@
+{
+  "name": "cordova-zhihu-daily",
+  "description": "cordova zhihu daily client",
+  "main": "www/index.html",
+  "authors": [
+    "beginor <beginor@qq.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "angular2",
+    "typescript",
+    "bootstrap4",
+    "zhihu",
+    "daily"
+  ],
+  "homepage": "https://github.com/beginor/cordova-zhihu-daily",
+  "moduleType": [
+    "es6"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2",
+    "tether": "~1.1.1"
+  }
+}
