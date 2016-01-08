@@ -40,4 +40,9 @@ gulp.task('systemjs', function () {
     ]).pipe(gulp.dest('www/libs/systemjs'));
 });
 
-gulp.task('default', ['angular2', 'bootstrap', 'jquery', 'rxjs', 'systemjs']);
+gulp.task('tether', function () {
+    gulp.src('bower_components/tether/dist/**/*.*')
+        .pipe(gulp.dest('www/libs/tether'));
+});
+
+gulp.task('copy', ['angular2', 'bootstrap', 'jquery', 'rxjs', 'systemjs', 'tether']);
