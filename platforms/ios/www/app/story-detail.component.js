@@ -38,7 +38,8 @@ System.register(['angular2/core', 'angular2/router', './model.service'], functio
                 StoryDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'story-detail',
-                        templateUrl: 'app/story-detail.component.html'
+                        templateUrl: 'app/story-detail.component.html',
+                        styles: ["\n        .story-image-place-holder {\n            position:absolute;\n            top: 0px;\n            height: 200px;\n            width: 100%;\n            text-align: center;\n            margin-top: 20px;\n        }\n        .story-image {\n            height: 200px;\n            width: 318px;\n        }\n    "]
                     }), 
                     __metadata('design:paramtypes', [router_1.RouteParams, model_service_1.ModelService])
                 ], StoryDetailComponent);

@@ -1,17 +1,35 @@
 import { Component, OnInit } from 'angular2/core';
 import { RouteParams } from 'angular2/router';
+import { StoryDetail, ModelService } from './model.service';
 
 @Component({
     selector: 'story-detail',
-    template: '<h2>{{id}}</h2>'
+    templateUrl: 'app/story-detail.component.html',
+    styles: [`
+        .story-image-place-holder {
+            position:absolute;
+            top: 0px;
+            height: 200px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .story-image {
+            height: 200px;
+            width: 318px;
+        }
+    `]
 })
 export class StoryDetailComponent implements OnInit {
     
-    id: string;
+    storyDetail: StoryDetail = {};
 
-    constructor(private routeParams: RouteParams) {}
+    constructor(private routeParams: RouteParams, private service: ModelService) {}
 
     ngOnInit() {
-        this.id = this.routeParams.get('id');
+        var id = this.routeParams.get('id');
+        this.service.getStoryDetail(id).then(data => {
+            this.storyDetail = data;
+        });
     }
 }

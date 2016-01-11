@@ -9,11 +9,15 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "cn.beginor.cordovaTest"
+        },
+        "cordova-plugin-livereload": {
+            "PACKAGE_NAME": "cn.beginor.cordovaTest"
         }
     },
     "dependent_plugins": {},
     "modules": [],
     "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.0"
+        "cordova-plugin-whitelist": "1.2.0",
+        "cordova-plugin-livereload": "1.0.0-dev"
     }
 }

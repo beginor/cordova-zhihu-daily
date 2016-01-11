@@ -48,7 +48,7 @@ System.register(['angular2/core', 'angular2/router', './model.service', './lates
                 };
                 AppComponent = __decorate([
                     core_1.Component({
-                        selector: 'app',
+                        selector: 'body',
                         templateUrl: 'app/app.component.html',
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),

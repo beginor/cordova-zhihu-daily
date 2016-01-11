@@ -51,6 +51,20 @@ export class ModelService {
         });
         return promise;
     }
+    
+    getStoryDetail(id: string): Promise<StoryDetail> {
+        var promise = new Promise<StoryDetail>((resolve, reject) => {
+            try {
+                this.http.get(this.baseUrl + 'story/' + id).subscribe(res => {
+                    var json: StoryDetail = res.json();
+                    resolve(json);
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+        return promise;
+    }
 }
 
 export interface Story {
@@ -100,4 +114,12 @@ export interface ThemeStory {
     description?: string;
     editors?: Editor[];
     stories?: Story[];
+}
+
+export interface StoryDetail extends Story {
+    body?: string;
+    image_source?: string;
+    share_url?: string;
+    js?: string[];
+    css?: string[]
 }

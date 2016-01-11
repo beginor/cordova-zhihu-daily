@@ -69,6 +69,21 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1) {
                     });
                     return promise;
                 };
+                ModelService.prototype.getStoryDetail = function (id) {
+                    var _this = this;
+                    var promise = new Promise(function (resolve, reject) {
+                        try {
+                            _this.http.get(_this.baseUrl + 'story/' + id).subscribe(function (res) {
+                                var json = res.json();
+                                resolve(json);
+                            });
+                        }
+                        catch (error) {
+                            reject(error);
+                        }
+                    });
+                    return promise;
+                };
                 ModelService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])

@@ -37,33 +37,89 @@ export class ModelService {
         });
         return promise;
     }
+    
+    getThemeStory(id: string): Promise<ThemeStory> {
+        var promise = new Promise<ThemeStory>((resolve, reject) => {
+            try {
+                this.http.get(this.baseUrl + 'theme/' + id).subscribe(res => {
+                    var json: ThemeStory = res.json();
+                    resolve(json);
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+        return promise;
+    }
+    
+    getStoryDetail(id: string): Promise<StoryDetail> {
+        var promise = new Promise<StoryDetail>((resolve, reject) => {
+            try {
+                this.http.get(this.baseUrl + 'story/' + id).subscribe(res => {
+                    var json: StoryDetail = res.json();
+                    resolve(json);
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+        return promise;
+    }
 }
 
 export interface Story {
-    id: number;
-    type: number;
-    title: string;
-    ga_prefix: string;
-    image: string;
-    images: string[];
+    id?: number;
+    type?: number;
+    title?: string;
+    ga_prefix?: string;
+    image?: string;
+    images?: string[];
 }
 
 export interface LatestStory {
-    date: string;
-    stories: Story[];
-    top_stories: Story[]
+    date?: string;
+    stories?: Story[];
+    top_stories?: Story[]
 }
 
 export interface Theme {
-    id: number;
-    name: string;
-    description: string;
-    thumbnail: string;
-    color: number;
+    id?: number;
+    name?: string;
+    description?: string;
+    thumbnail?: string;
+    color?: number;
 }
 
 export interface Themes {
-    limit: number;
-    subscribed: Theme[];
-    others: Theme[];
+    limit?: number;
+    subscribed?: Theme[];
+    others?: Theme[];
+}
+
+export interface Editor {
+    id?: number;
+    name?: string;
+    bio?: string;
+    avatar?: string;
+    url?: string;
+}
+
+export interface ThemeStory {
+    id?: number;
+    name?: string;
+    image?: string;
+    image_source?: string;
+    color?: number;
+    background?: string;
+    description?: string;
+    editors?: Editor[];
+    stories?: Story[];
+}
+
+export interface StoryDetail extends Story {
+    body?: string;
+    image_source?: string;
+    share_url?: string;
+    js?: string[];
+    css?: string[]
 }

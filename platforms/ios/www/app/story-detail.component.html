@@ -2,9 +2,12 @@
     <link rel="stylesheet" type="text/css" *ngFor="#css of storyDetail.css" [href]="css" />
 </div>
 <div class="card">
-  <img *ngIf="storyDetail.image" class="card-img-top img-fluid" [src]="storyDetail.image" [alt]="storyDetail.title">
-  <div class="card-block">
-    <p class="card-text" [innerHtml]="storyDetail.body"></p>
-    <button class="btn btn-primary" onclick="javascript:history.back()">返回</button>
-  </div>
+    <div class="card-block">
+        <p class="card-text" [innerHtml]="storyDetail.body"></p>
+        <button class="btn btn-primary" onclick="javascript:history.back()">返回</button>
+    </div>
+    
+    <div *ngIf="storyDetail.image" class="story-image-place-holder">
+        <img class="story-image" [src]="storyDetail.image" [alt]="storyDetail.title"/> 
+    </div>
 </div>

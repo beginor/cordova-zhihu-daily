@@ -6,7 +6,7 @@ import { ThemeStoriesComponent } from './theme-stories.component';
 import { StoryDetailComponent } from './story-detail.component'
 
 @Component({
-    selector: 'app',
+    selector: 'body',
     templateUrl: 'app/app.component.html',
     directives: [ROUTER_DIRECTIVES]
 })

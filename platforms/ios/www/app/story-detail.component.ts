@@ -4,7 +4,21 @@ import { StoryDetail, ModelService } from './model.service';
 
 @Component({
     selector: 'story-detail',
-    templateUrl: 'app/story-detail.component.html'
+    templateUrl: 'app/story-detail.component.html',
+    styles: [`
+        .story-image-place-holder {
+            position:absolute;
+            top: 0px;
+            height: 200px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .story-image {
+            height: 200px;
+            width: 318px;
+        }
+    `]
 })
 export class StoryDetailComponent implements OnInit {
     
