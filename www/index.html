@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta charset="utf-8">
         <base href="./">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="libs/tether/css/tether.min.css">
-        <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>知乎日报（山寨版）</title>
-        <!-- 1. Load libraries -->
+        <link href="libs/ionic/bundles/ionic.min.css" rel="stylesheet">
+        <script type="text/javascript" src="cordova.js"></script>
+        <!-- Load libraries -->
         <script src="libs/systemjs/system.js"></script>
         <script src="libs/rxjs/Rx.min.js"></script>
         <script src="libs/es6-shim/es6-shim.min.js"></script>
@@ -18,26 +18,14 @@
         <script src="libs/angular2/angular2.min.js"></script>
         <script src="libs/angular2/http.min.js"></script>
         <script src="libs/angular2/router.min.js"></script>
-        <script src="libs/jquery/jquery.min.js"></script>
-        <script src="libs/tether/js/tether.min.js"></script>
-        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
-        <script>
-        System.config({
-            packages: {
-                app: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        document.addEventListener('deviceready', function () {
-            document.body.style.background = '';
-            System.import('app/boot')
-                .then(null, console.error.bind(console));
-        }, false);
-    </script>
+        <script src="libs/ionic/js/web-animations.min.js"></script>
+        <script src="libs/ionic/bundles/ionic.system.js"></script>
+        <!-- Config module load -->
+        <script type="text/javascript" src="index.js"></script>
     </head>
-<body>
-    Loading ... 
-</body>
+    <body>
+        <ion-app>
+            <ion-loading-icon></ion-loading-icon>
+        </ion-app>
+    </body>
 </html>
