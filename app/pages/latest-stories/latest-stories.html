@@ -1,0 +1,25 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>首页</ion-title>
+</ion-navbar>
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>头条新闻</ion-list-header>
+        <ion-item *ngFor="#story of latestStory.top_stories">
+            <ion-thumbnail item-right>
+                <img [src]="story.image">
+            </ion-thumbnail>
+            <h2 style="white-space: normal;">{{story.title}}</h2>
+        </ion-item>
+        <ion-list-header>最近更新</ion-list-header>
+        <ion-item *ngFor="#story of latestStory.stories">
+            <ion-thumbnail item-right>
+                <img [src]="story.images[0]">
+            </ion-thumbnail>
+            <h2 style="white-space: normal;">{{story.title}}</h2>
+        </ion-item>
+    </ion-list>
+</ion-content>

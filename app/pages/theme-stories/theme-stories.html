@@ -1,0 +1,41 @@
+<ion-navbar *navbar>
+
+    <button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    
+    <ion-title>{{themeStory.name}}</ion-title>
+
+    <ion-buttons end>
+        <button>
+            <ion-icon ios="ios-settings-outline" md="md-settings"></ion-icon>
+        </button>
+    </ion-buttons>
+
+</ion-navbar>
+
+<ion-content>
+    <ion-card>
+        <img [src]="themeStory.image" />
+        <ion-card-content>
+            <p>{{themeStory.description}}</p>
+            <p>
+                <a *ngFor="#e of themeStory.editors" [href]="e.url">
+                    <ion-avatar class="editor-avator" style="display: inline-block;">
+                        <img [src]="e.avatar"/>
+                    </ion-avatar>
+                </a>
+            </p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-list>
+            <ion-item *ngFor="#story of themeStory.stories">
+                <ion-thumbnail item-right>
+                    <img *ngIf="story.images" [src]="story.images[0]">
+                </ion-thumbnail>
+                <h2 style="white-space: normal;">{{story.title}}</h2>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+</ion-content>
