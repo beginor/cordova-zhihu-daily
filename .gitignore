@@ -1,2 +1,10 @@
-bower_components
 node_modules
+bower_components
+typings
+platforms
+plugins
+libs
+build
+.idea
+app/**/*.js
+app/**/*.map
