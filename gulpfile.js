@@ -1,29 +1,11 @@
-var gulp = require('gulp');
-var copy = require('gulp-copy');
-var del = require('del');
+var gulp = require('gulp'),
+    del = require('del'),
+    tsc = require('gulp-typescript'),
+    concat = require('gulp-concat'),
+    sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('angular2', function () {
-    gulp.src([
-        'node_modules/angular2/bundles/angular2-polyfills.js',
-        'node_modules/angular2/bundles/angular2-polyfills.min.js',
-        'node_modules/angular2/bundles/angular2.js',
-        'node_modules/angular2/bundles/angular2.min.js',
-        'node_modules/angular2/bundles/router.js',
-        'node_modules/angular2/bundles/router.min.js',
-        'node_modules/angular2/bundles/http.js',
-        'node_modules/angular2/bundles/http.min.js'
-    ]).pipe(gulp.dest('www/libs/angular2'));
-});
 
-gulp.task('rxjs', function () {
-    gulp.src([
-        'node_modules/rxjs/bundles/Rx.js',
-        'node_modules/rxjs/bundles/Rx.min.js',
-        'node_modules/rxjs/bundles/Rx.min.js.map'
-    ]).pipe(gulp.dest('www/libs/rxjs'));
-});
-
-gulp.task('systemjs', function () {
+gulp.task('cp:systemjs', function () {
     gulp.src([
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/systemjs/dist/system.js',
@@ -31,7 +13,13 @@ gulp.task('systemjs', function () {
     ]).pipe(gulp.dest('www/libs/systemjs'));
 });
 
-gulp.task('es6-shim', function () {
+gulp.task('cp:rxjs', function () {
+    gulp.src([
+        'node_modules/rxjs/bundles/*.*'
+    ]).pipe(gulp.dest('www/libs/rxjs'));
+});
+
+gulp.task('cp:es6-shim', function () {
     gulp.src([
         'node_modules/es6-shim/es6-shim.js',
         'node_modules/es6-shim/es6-shim.min.js',
@@ -39,25 +27,54 @@ gulp.task('es6-shim', function () {
     ]).pipe(gulp.dest('www/libs/es6-shim'));
 });
 
-gulp.task('bootstrap', function () {
-    gulp.src('bower_components/bootstrap/dist/**/*.*')
-        .pipe(gulp.dest('www/libs/bootstrap'));
+gulp.task('cp:angular2', ['cp:systemjs', 'cp:rxjs', 'cp:es6-shim'], function () {
+    gulp.src([
+        'node_modules/angular2/bundles/*.*'
+    ]).pipe(gulp.dest('www/libs/angular2'));
 });
 
-gulp.task('jquery', function () {
-    gulp.src('bower_components/jquery/dist/**/*.*')
-        .pipe(gulp.dest('www/libs/jquery'));
+gulp.task('cp:ionic', function() {
+    gulp.src([
+        'node_modules/ionic-framework/bundles/*.*'
+    ]).pipe(gulp.dest('www/libs/ionic/bundles/'));
+    gulp.src([
+        'node_modules/ionic-framework/bundles/fonts/*.*'
+    ]).pipe(gulp.dest('www/libs/ionic/fonts/'));
+    gulp.src([
+        'node_modules/ionic-framework/js/*.*'
+    ]).pipe(gulp.dest('www/libs/ionic/js/'));
 });
 
-gulp.task('tether', function () {
-    gulp.src('bower_components/tether/dist/**/*.*')
-        .pipe(gulp.dest('www/libs/tether'));
+gulp.task('ts:app', function() {
+    var tsResult = gulp.src('app/**/*.ts')
+        .pipe(sourcemaps.init())
+        .pipe(tsc({
+            "target": "es5",
+            "module": "system",
+            "moduleResolution": "node",
+            "sourceMap": true,
+            "emitDecoratorMetadata": true,
+            "experimentalDecorators": true,
+            "removeComments": false,
+            "noImplicitAny": false
+        }));
+    return tsResult.js.pipe(sourcemaps.write('./'))
+                      .pipe(gulp.dest('www/build/'));
 });
 
-gulp.task('copy', ['angular2', 'rxjs', 'systemjs', 'es6-shim', 'bootstrap', 'jquery', 'tether']);
+gulp.task('cp:app', function () {
+    gulp.src('app/**/*.html').pipe(gulp.dest('www/build/'));
+});
+
+gulp.task('watch:app', function() {
+    gulp.watch(['app/**/*.html', 'app/**/*.ts'], ['cp:app', 'ts:app']);
+});
+
+gulp.task('copy', ['cp:angular2', 'cp:ionic', 'cp:app', 'ts:app']);
 
 gulp.task('clean', function () {
     del([
+        'www/build/**/*',
         'www/libs/**/*'
     ]);
 });
