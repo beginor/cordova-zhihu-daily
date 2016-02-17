@@ -5,8 +5,6 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="bower_components/tether/dist/css/tether.css">
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
         <title>Angular Mobile Test</title>
         <script src="node_modules/rxjs/bundles/Rx.umd.min.js"></script>
         <script src="node_modules/es6-shim/es6-shim.min.js"></script>
@@ -17,7 +15,7 @@
         <my-app></my-app>
         <script type="text/javascript">
             (function () {
-                ng.core.enableProdMode();
+                //ng.core.enableProdMode();
                 var HelloApp = ng.core.Component({
                     selector: 'my-app',
                     template: '<h1>Hello Angular 2</h1>'
@@ -26,9 +24,8 @@
                     }
                 });
                 //
-                document.addEventListener('DOMContentLoaded', function () {
-                    ng.platform.browser.bootstrap(HelloApp);
-                });
+                ng.core.enableProdMode();
+                ng.platform.browser.bootstrap(HelloApp);
             })()
         </script>
     </body>
